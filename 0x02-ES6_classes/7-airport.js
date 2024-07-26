@@ -1,12 +1,12 @@
 // Airport.js
 export default class Airport {
   constructor(name, code) {
-    this._name = this._validateString(name, 'Name');
-    this._code = this._validateString(code, 'Code');
+    this._name = Airport._validateString(name, 'Name');
+    this._code = Airport._validateString(code, 'Code');
   }
 
   // Validate String
-  _validateString(value, attributeName) {
+  static _validateString(value, attributeName) {
     if (typeof value !== 'string') {
       throw new TypeError(`${attributeName} must be a string`);
     }
@@ -28,4 +28,3 @@ export default class Airport {
     return this._code;
   }
 }
-
