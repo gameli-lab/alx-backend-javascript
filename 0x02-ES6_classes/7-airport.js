@@ -1,24 +1,31 @@
-// Airport.test.js
-import Airport from './Airport';
+// Airport.js
+export default class Airport {
+  constructor(name, code) {
+    this._name = this._validateString(name, 'Name');
+    this._code = this._validateString(code, 'Code');
+  }
 
-describe('Airport', () => {
-  it('should initialize with the correct attributes', () => {
-    const airport = new Airport('John F. Kennedy International Airport', 'JFK');
-    expect(airport.name).toBe('John F. Kennedy International Airport');
-    expect(airport.code).toBe('JFK');
-  });
+  // Validate String
+  _validateString(value, attributeName) {
+    if (typeof value !== 'string') {
+      throw new TypeError(`${attributeName} must be a string`);
+    }
+    return value;
+  }
 
-  it('should throw error for invalid name type', () => {
-    expect(() => new Airport(123, 'JFK')).toThrow(TypeError);
-  });
+  // Getter for name
+  get name() {
+    return this._name;
+  }
 
-  it('should throw error for invalid code type', () => {
-    expect(() => new Airport('John F. Kennedy International Airport', 123)).toThrow(TypeError);
-  });
+  // Getter for code
+  get code() {
+    return this._code;
+  }
 
-  it('should return the airport code as string', () => {
-    const airport = new Airport('John F. Kennedy International Airport', 'JFK');
-    expect(airport.toString()).toBe('JFK');
-  });
-});
+  // Override toString method to return airport code
+  toString() {
+    return this._code;
+  }
+}
 
