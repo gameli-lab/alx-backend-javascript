@@ -1,9 +1,14 @@
 const cleanSet = (set, startString) => {
-  const cleanedSet = new Set();
-  for (const element of set) {
-    cleanedSet.add(element.replace(startString, '-'));
+  if (!startString || typeof startString !== 'string') {
+    return '';
   }
-  return cleanedSet;
+  const cleanedSet = [];
+  for (const element of set) {
+    if (element.startsWith(startString)) {
+      cleanedSet.push(element.slice(startString.length));
+    }
+  }
+  return cleanedSet.join('-');
 };
 
 export default cleanSet;
